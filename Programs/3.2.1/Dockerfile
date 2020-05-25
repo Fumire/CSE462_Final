@@ -1,7 +1,8 @@
 FROM ubuntu:20.04
 LABEL maintainer="jwlee230@unist.ac.kr"
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update
+RUN apt-get install -y curl default-jdk
 
 ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_URL=http://mirror.apache-kr.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
@@ -20,4 +21,4 @@ ADD core-site.xml /etc/hadoop/
 ENV HADOOP_PREFIX /opt/hadoop
 ENV HADOOP_CONF_DIR /etc/hadoop
 ENV PATH $HADOOP_PREFIX/bin/:$PATH
-ENV JAVA_HOME /usr/lib/jvm/zulu-8-amd64
+ENV JAVA_HOME /usr/lib/jvm/default-java
