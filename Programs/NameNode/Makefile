@@ -10,4 +10,4 @@ delete:
 	docker rmi $(IMAGE_NAME)
 
 interact:
-	docker run --name $(CONTAINER_NAME) --rm --interactive --tty $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath .):/opt/hadoop/dfs/name --publish-all $(IMAGE_NAME)
