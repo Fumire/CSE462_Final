@@ -1,5 +1,5 @@
 IMAGE_NAME = namenode:3.2.1
-CONTAINER_NAME = NameNode3.2.1
+CONTAINER_NAME = NameNode
 
 all:
 
@@ -10,4 +10,10 @@ delete:
 	docker rmi $(IMAGE_NAME)
 
 interact:
-	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath .):/opt/hadoop/dfs/name --publish-all $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath name):/opt/hadoop/dfs/name:z --publish-all $(IMAGE_NAME)
+
+start:
+	docker run --name $(CONTAINER_NAME) --detach --volume $(abspath name):/opt/hadoop/dfs/name:z --publish-all $(IMAGE_NAME)
+
+stop:
+	docker rm $(CONTAINER_NAME)
