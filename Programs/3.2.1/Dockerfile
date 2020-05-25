@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+LABEL maintainer="jwlee230@unist.ac.kr"
 
 RUN apt-get update && apt-get install -y curl
 
