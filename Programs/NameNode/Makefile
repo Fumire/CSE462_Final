@@ -10,4 +10,4 @@ delete:
 	docker rmi $(IMAGE_NAME)
 
 interact:
-	docker run --name $(CONTAINER_NAME) --rm --iteractive --tty $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --rm --interactive --tty $(IMAGE_NAME)
