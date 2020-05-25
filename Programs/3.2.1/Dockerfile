@@ -12,13 +12,12 @@ RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/
 RUN rm /tmp/hadoop.tar.gz
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION /opt/hadoop
-RUN mkdir /opt/hadoop/dfs
+RUN mkdir /opt/hadoop-$HADOOP_VERSION/dfs
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
-RUN rm -rf /opt/hadoop/share/doc
 
 ADD core-site.xml /etc/hadoop/
 
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_CONF_DIR /etc/hadoop
-ENV PATH $HADOOP_PREFIX/bin/:$PATH
+ENV PATH $HADOOP_HOME/bin/:$PATH
 ENV JAVA_HOME /usr/lib/jvm/default-java
