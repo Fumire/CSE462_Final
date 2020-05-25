@@ -10,10 +10,11 @@ delete:
 	docker rmi $(IMAGE_NAME)
 
 interact:
-	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath name):/opt/hadoop/dfs/name:z --publish-all $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath name):/opt/hadoop/dfs/name:z --publish 9000:9000 --publish 50070:50070 $(IMAGE_NAME)
 
 start:
-	docker run --name $(CONTAINER_NAME) --detach --volume $(abspath name):/opt/hadoop/dfs/name:z --publish-all $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --detach --volume $(abspath name):/opt/hadoop/dfs/name:z --publish 9000:9000 --publish 50070:50070 $(IMAGE_NAME)
 
 stop:
+	docker stop $(CONTAINER_NAME)
 	docker rm $(CONTAINER_NAME)
