@@ -6,6 +6,6 @@ VOLUME /opt/hadoop/dfs/data
 ADD start.sh /start.sh
 RUN chmod a+x /start.sh
 
-EXPOSE 50075 50010
+EXPOSE 9864 9866 50010 50075
 
 CMD ["/start.sh"]
