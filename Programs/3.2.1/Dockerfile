@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 LABEL maintainer="jwlee230@unist.ac.kr"
 
 RUN apt-get update
-RUN apt-get install -y curl openjdk-8-jdk vim ssh net-tools curl netcat
+RUN apt-get install -y curl openjdk-8-jdk vim ssh net-tools curl netcat openssh-server
 
 ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_URL=http://mirror.apache-kr.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
@@ -23,7 +23,9 @@ ENV HADOOP_CONF_DIR /etc/hadoop
 ENV PATH $HADOOP_HOME/bin/:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
-CMD echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> /etc/profile
+RUN ssh-keygen -t rsa -P ""
+RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+RUN echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> /etc/hadoop/hadoop-env.sh
 
 ENV user "root"
 ENV HDFS_NAMENODE_USER "root"
