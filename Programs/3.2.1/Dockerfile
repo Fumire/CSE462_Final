@@ -23,9 +23,9 @@ ENV HADOOP_CONF_DIR /etc/hadoop
 ENV PATH $HADOOP_HOME/bin/:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
-RUN ssh-keygen -t rsa -P ""
+RUN ssh-keygen -t rsa -P "" -f /root/.ssh/id_rsa
 RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-RUN echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> /etc/hadoop/hadoop-env.sh
+RUN echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/" >> /etc/hadoop/hadoop-env.sh
 
 ENV user "root"
 ENV HDFS_NAMENODE_USER "root"
