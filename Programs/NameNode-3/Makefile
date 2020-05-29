@@ -10,10 +10,10 @@ delete:
 	docker rmi $(IMAGE_NAME)
 
 interact:
-	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath app-logs):/app-logs:z --publish 9000:9000 --publish 9870:9870 --publish 50070:50070 $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --rm --interactive --tty --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath app-logs):/app-logs:z --publish 8088:8088 --publish 9000:9000 --publish 9870:9870 --publish 19888:19888 $(IMAGE_NAME)
 
 start:
-	docker run --name $(CONTAINER_NAME) --detach --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath app-logs):/app-logs:z --publish 9000:9000 --publish 9870:9870 --publish 50070:50070 $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) --detach --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath app-logs):/app-logs:z --publish 8088:8088 --publish 9000:9000 --publish 9870:9870 --publish 19888:19888 $(IMAGE_NAME)
 
 insight:
 	docker exec --interactive --tty $(CONTAINER_NAME) /bin/bash
