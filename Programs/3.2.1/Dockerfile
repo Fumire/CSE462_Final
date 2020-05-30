@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 LABEL maintainer="jwlee230@unist.ac.kr"
 
 RUN apt-get update
-RUN apt-get install -y curl openjdk-8-jdk vim ssh net-tools curl netcat openssh-server
+RUN apt-get install -y curl openjdk-8-jdk vim ssh net-tools curl netcat openssh-server make
 
 ENV HADOOP_VERSION=3.2.1
 ENV HADOOP_URL=http://mirror.apache-kr.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
