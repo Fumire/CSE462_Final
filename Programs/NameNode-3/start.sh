@@ -14,7 +14,6 @@ else
     $HADOOP_HOME/bin/hdfs --config $HADOOP_CONF_DIR namenode -format
 fi
 
-$HADOOP_HOME/bin/yarn --daemon start nodemanager
-$HADOOP_HOME/bin/yarn --daemon start resourcemanager
+$HADOOP_HOME/bin/yarn --daemon start --config $HADOOP_CONF_DIR resourcemanager
 $HADOOP_HOME/bin/mapred --daemon start historyserver
 $HADOOP_HOME/bin/hdfs --config $HADOOP_CONF_DIR namenode
