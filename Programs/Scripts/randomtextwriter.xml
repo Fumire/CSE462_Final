@@ -2,11 +2,15 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
     <property>
-        <name>test.randomtextwriter.min_words_key</name>
+        <name>mapreduce.randomtextwriter.minwordskey</name>
         <value>5</value>
     </property>
     <property>
-        <name>test.randomtextwriter.bytes_per_map</name>
+        <name>mapreduce.randomtextwriter.bytespermap</name>
+        <value>16106127360</value>
+    </property>
+    <property>
+        <name>mapreduce.randomtextwriter.totalbytes</name>
         <value>16106127360</value>
     </property>
 </configuration>
