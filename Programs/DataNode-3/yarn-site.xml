@@ -13,4 +13,12 @@
         <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
         <value>logs</value>
     </property>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>114.70.14.161</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.resource-tracker.address</name>
+        <value>114.70.14.161</value>
+    </property>
 </configuration>
