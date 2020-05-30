@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>test.randomtextwriter.min_words_key</name>
+        <value>5</value>
+    </property>
+    <property>
+        <name>test.randomtextwriter.bytes_per_map</name>
+        <value>16106127360</value>
+    </property>
+</configuration>
