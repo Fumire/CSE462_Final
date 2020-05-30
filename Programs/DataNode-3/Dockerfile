@@ -6,6 +6,9 @@ VOLUME /opt/hadoop/dfs/data
 ADD hdfs-site.xml /etc/hadoop/hdfs-site.xml
 ADD yarn-site.xml /etc/hadoop/yarn-site.xml
 
+RUN mkdir /Scripts
+VOLUME /Scripts
+
 ADD start.sh /start.sh
 RUN chmod a+x /start.sh
 
