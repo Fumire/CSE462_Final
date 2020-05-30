@@ -21,4 +21,16 @@
         <name>yarn.resourcemanager.resource-tracker.address</name>
         <value>114.70.14.161</value>
     </property>
+    <property>
+        <name>yarn.scheduler.maximum-allocation-mb</name>
+        <value>4096</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.resource.memory-mb</name>
+        <value>4096</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.resource.cpu-vcores</name>
+        <value>6</value>
+    </property>
 </configuration>
