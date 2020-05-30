@@ -7,10 +7,10 @@
     </property>
     <property>
         <name>mapreduce.randomtextwriter.bytespermap</name>
-        <value>16106127360</value>
+        <value>1610612736</value>
     </property>
     <property>
         <name>mapreduce.randomtextwriter.totalbytes</name>
-        <value>16106127360</value>
+        <value>1610612736</value>
     </property>
 </configuration>
