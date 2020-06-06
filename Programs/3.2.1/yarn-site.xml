@@ -41,4 +41,12 @@
         <name>yarn.acl.enable</name>
         <value>0</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.address</name>
+        <value>${yarn.nodemanager.hostname}:41335</value>
+    </property>
 </configuration>
