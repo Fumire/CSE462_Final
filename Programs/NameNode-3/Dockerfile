@@ -2,10 +2,10 @@ FROM base:3.2.1
 
 HEALTHCHECK CMD curl -f http://localhost:9870 || exit 1
 
-ADD hdfs-site.xml /etc/hadoop/hdfs-site.xml
-ADD yarn-site.xml /etc/hadoop/yarn-site.xml
-ADD mapred-site.xml /etc/hadoop/mapred-site.xml
 VOLUME /app-logs
+
+ADD masters /etc/hadoop/masters
+ADD slaves /etc/hadoop/slaves
 
 RUN mkdir -p /opt/hadoop/dfs/name
 VOLUME /opt/hadoop/dfs/name

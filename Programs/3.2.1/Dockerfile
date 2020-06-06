@@ -4,8 +4,8 @@ LABEL maintainer="jwlee230@unist.ac.kr"
 RUN apt-get update
 RUN apt-get install -y curl openjdk-8-jdk vim ssh net-tools curl netcat openssh-server make
 
-ENV HADOOP_VERSION=3.2.1
-ENV HADOOP_URL=http://mirror.apache-kr.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
+ENV HADOOP_VERSION "3.2.1"
+ENV HADOOP_URL "http://mirror.apache-kr.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz"
 
 RUN curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz
 RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/
@@ -17,6 +17,9 @@ RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 
 ADD core-site.xml /etc/hadoop/
+ADD hdfs-site.xml /etc/hadoop/hdfs-site.xml
+ADD yarn-site.xml /etc/hadoop/yarn-site.xml
+ADD mapred-site.xml /etc/hadoop/mapred-site.xml
 
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_CONF_DIR /etc/hadoop
