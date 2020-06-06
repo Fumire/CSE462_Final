@@ -1,7 +1,7 @@
 IMAGE_NAME = datanode:3.2.1
 CONTAINER_NAME = DataNode
 
-PORT_OPTS = --publish 22:22 --publish 8030:8030 --publish 8031:8031 --publish 8032:8032 --publish 8033:8033 --publish 8042:8042 --publish 9866:9866 --publish 9867:9867 --publish 9864:9864 --publish 41335:41335 --publish 50010:50010 --publish 50075:50075
+PORT_OPTS = --publish 22:22 --publish 8030:8030 --publish 8031:8031 --publish 8032:8032 --publish 8033:8033 --publish 8042:8042 --publish 9866:9866 --publish 9867:9867 --publish 9864:9864 --publish 41335:41335 --publish 50010:50010 --publish 50075:50075 --network host
 VOLUME_OPTS = --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath ../Scripts):/Scripts:z
 HOST_OPTS = --add-host elec-com-eng-p28:114.70.14.161 --add-host elec-com-eng-p29:114.70.14.162 --add-host elec-com-eng-p30:114.70.14.163
 
