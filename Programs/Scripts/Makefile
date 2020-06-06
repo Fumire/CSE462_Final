@@ -15,8 +15,12 @@ input: randomtextwriter.xml
 	hdfs dfs -head $(INPUT_DIR)/part-m-00000
 .PHONY += input
 
+wordcount:
+	yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000
+.PHONY += wordcount
+
 pi:
-	yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 2 100000
+	yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 8 100000
 .PHONY += pi
 
 clean:
