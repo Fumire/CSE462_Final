@@ -3,7 +3,7 @@ JAR_FILE = /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.ja
 INPUT_DIR = input
 
 # OPTIONS
-RESOURCEMANAGER_OPTION = -jt 114.70.14.161
+RESOURCEMANAGER_OPTION = -jt elec-com-eng-p28:8032
 
 # RECIPES 
 all:
