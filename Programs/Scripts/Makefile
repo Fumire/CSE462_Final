@@ -32,4 +32,5 @@ pi:
 
 clean:
 	hdfs dfs -rm -r -f /
+	rm -fv input wordcount sort grep pi
 .PHONY += input
