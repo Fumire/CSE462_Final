@@ -14,24 +14,21 @@ RESOURCEMANAGER_OPTION = -jt elec-com-eng-p28:8032
 all:
 
 input: randomtextwriter.xml
-	yarn jar $(JAR_FILE) randomtextwriter -conf $(word 1,$^) $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)
+	yarn jar $(JAR_FILE) randomtextwriter -conf $(word 1,$^) $(RESOURCEMANAGER_OPTION) $(INPUT_DIR) 1> $@ 2> &1
 	hdfs dfs -ls -h $(INPUT_DIR)/part-m-00000
 	hdfs dfs -head $(INPUT_DIR)/part-m-00000
-.PHONY += input
 
-wordcount:
-	yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDCOUNT_DIR)
-.PHONY += wordcount
+wordcount: input
+	yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDCOUNT_DIR) 1> $@ 2> &1
 
-sort:
-	yarn jar $(JAR_FILE) sort $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(SORT_DIR)
+sort: input
+	yarn jar $(JAR_FILE) sort $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(SORT_DIR) 1> $@ 2> &1
 
-grep:
-	yarn jar $(JAR_FILE) grep $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(GREP_DIR) "^[a-z0-9_-]{4,8}$$"
+grep: input
+	yarn jar $(JAR_FILE) grep $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(GREP_DIR) "^[a-z0-9_-]{4,8}$$" 1> $@ 2> &1
 
 pi:
-	yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 8 100000
-.PHONY += pi
+	yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 8 100000 1> $@ 2> &1
 
 clean:
 	hdfs dfs -rm -r -f /
