@@ -6,6 +6,8 @@ echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile
 source /etc/profile
 
 service ssh start
+service sysstat start
+cron
 
 if [ "$(ls -A $NAME_DIR)" ]; then
     echo "NameNode is already formatted."
