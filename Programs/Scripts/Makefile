@@ -32,3 +32,7 @@ clean:
 	hdfs dfs -rm -r -f /user/root
 	rm -fv input wordcount sort grep pi
 .PHONY += input
+
+history.csv:
+	sadf -dhH -P ALL -- -A > $@
+	sed --in-place "s/;/,/g" $@
