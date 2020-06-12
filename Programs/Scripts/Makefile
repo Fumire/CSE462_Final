@@ -6,6 +6,9 @@ INPUT_DIR = input
 WORDCOUNT_DIR = wordcount
 SORT_DIR = sort
 GREP_DIR = grep
+WORDMEAN_DIR = wordmean
+WORDMEDIAN_DIR = wordmedian
+WORDSTD_DIR = wordstandarddeviation
 
 # OPTIONS
 RESOURCEMANAGER_OPTION = -jt elec-com-eng-p28:8032
@@ -23,7 +26,16 @@ sort: input
 	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) sort $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(SORT_DIR)$$i 2>&1 | tee -a $@; done;
 
 grep: input
-	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) grep $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(GREP_DIR)$$i "2020-06-09T00:34:17+0900^[a-z0-9_-]{4,8}$$" 2>&1 | tee -a $@; done;
+	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) grep $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(GREP_DIR)$$i "^[a-z0-9_-]{4,8}$$" 2>&1 | tee -a $@; done;
+
+wordmean: input
+	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) wordmean $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDMEAN_DIR)$$i 2>&1 | tee -a $@; done;
+
+wordmedian: input
+	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) wordmedian $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDMEDIAN_DIR)$$i 2>&1 | tee -a $@; done;
+
+wordstd: input
+	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) wordstandarddeviation $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDSTD_DIR)$$i 2>&1 | tee -a $@; done;
 
 pi:
 	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 8 100000 2>&1 | tee -a $@; done;
@@ -33,6 +45,6 @@ clean:
 	rm -fv input wordcount sort grep pi
 .PHONY += input
 
-history.csv:
+history.csv: wordcount sort grep wordmean wordmedian wordstd
 	sadf -dhH -P ALL -- -A > $@
 	sed --in-place "s/;/,/g" $@
