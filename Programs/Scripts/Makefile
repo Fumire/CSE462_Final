@@ -40,11 +40,14 @@ wordstd: input
 pi:
 	for i in `seq 10`; do date >> $@; yarn jar $(JAR_FILE) pi $(RESOURCEMANAGER_OPTION) 8 100000 2>&1 | tee -a $@; done;
 
+run: wordcount sort grep wordmean wordmedian wordstd
+.PHONY += run
+
 clean:
 	hdfs dfs -rm -r -f /user/root
 	rm -fv input wordcount sort grep pi
-.PHONY += input
+.PHONY += clean
 
-history.csv: wordcount sort grep wordmean wordmedian wordstd
+history.csv:
 	sadf -dhH -P ALL -- -A > $@
 	sed --in-place "s/;/,/g" $@
