@@ -2,7 +2,7 @@
 JAR_FILE = /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar
 
 # DIRECTORY
-INPUT_DIR = input
+INPUT_DIR = /user/root/input
 WORDCOUNT_DIR = wordcount
 SORT_DIR = sort
 GREP_DIR = grep
@@ -21,7 +21,8 @@ makeinput: randomtextwriter.xml
 	hdfs dfs -get $(INPUT_DIR)/part-m-00000 /Scripts/input.txt | tee -a $@
 
 input:
-	hdfs dfs -put /Scripts/input.txt $(INPUT_DIR)/part-m-00000
+	hdfs dfs -mkdir -p $(INPUT_DIR) | tee -a $@
+	hdfs dfs -put /Scripts/input.txt $(INPUT_DIR)/part-m-00000 | tee -a $@
 
 wordcount: makeinput
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDCOUNT_DIR)$$i 2>&1 | tee -a $@; done;
@@ -49,7 +50,7 @@ run: wordcount sort grep wordmean wordmedian wordstd
 
 clean:
 	hdfs dfs -rm -r -f /user/root
-	rm -fv input wordcount sort grep pi
+	rm -fv input wordcount sort grep pi wordmean wordmedian wordstd history.csv
 .PHONY += clean
 
 history.csv:
