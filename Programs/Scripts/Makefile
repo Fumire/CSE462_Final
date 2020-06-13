@@ -20,26 +20,27 @@ makeinput: randomtextwriter.xml
 	yarn jar $(JAR_FILE) randomtextwriter -conf $(word 1,$^) $(RESOURCEMANAGER_OPTION) $(INPUT_DIR) 2>&1 | tee $@
 	hdfs dfs -get $(INPUT_DIR)/part-m-00000 /Scripts/input.txt | tee -a $@
 
-input:
-	hdfs dfs -mkdir -p $(INPUT_DIR) | tee -a $@
-	hdfs dfs -put /Scripts/input.txt $(INPUT_DIR)/part-m-00000 | tee -a $@
+input: input.txt
+	hdfs dfs -mkdir -p $(INPUT_DIR) 2>&1 | tee -a $@
+	hdfs dfs -put $(abspath $<) $(INPUT_DIR)/part-m-00000 2>&1 | tee -a $@
+	rm -fv $< >> $@
 
-wordcount: makeinput
+wordcount: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDCOUNT_DIR)$$i 2>&1 | tee -a $@; done;
 
-sort: makeinput
+sort: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) sort $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(SORT_DIR)$$i 2>&1 | tee -a $@; done;
 
-grep: makeinput
+grep: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) grep $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(GREP_DIR)$$i "^[a-z0-9_-]{4,8}$$" 2>&1 | tee -a $@; done;
 
-wordmean: makeinput
+wordmean: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordmean $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDMEAN_DIR)$$i 2>&1 | tee -a $@; done;
 
-wordmedian: makeinput
+wordmedian: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordmedian $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDMEDIAN_DIR)$$i 2>&1 | tee -a $@; done;
 
-wordstd: makeinput
+wordstd: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordstandarddeviation $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDSTD_DIR)$$i 2>&1 | tee -a $@; done;
 
 pi:
