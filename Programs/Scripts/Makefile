@@ -50,10 +50,9 @@ run: wordcount sort grep wordmean wordmedian wordstd
 .PHONY += run
 
 clean:
-	hdfs dfs -rm -r -f /user/root
 	rm -fv input wordcount sort grep pi wordmean wordmedian wordstd history.csv
 .PHONY += clean
 
 history.csv:
-	for f in /var/log/sa/sa*; do sadf -dhH -P ALL -- -A $$f >> $@; done;
+	for f in /var/log/sysstat/sa*; do sadf -dhH -P ALL -- -A $$f >> $@; done;
 	sed --in-place "s/;/,/g" $@
