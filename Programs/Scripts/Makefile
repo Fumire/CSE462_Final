@@ -24,7 +24,6 @@ makeinput: randomtextwriter.xml
 input: input.txt
 	hdfs dfs -mkdir -p $(INPUT_DIR) 2>&1 | tee -a $@
 	hdfs dfs -put $(abspath $<) $(INPUT_DIR)/part-m-00000 2>&1 | tee -a $@
-	rm -fv $< >> $@
 
 wordcount: input
 	for i in `seq 3`; do date >> $@; yarn jar $(JAR_FILE) wordcount $(RESOURCEMANAGER_OPTION) $(INPUT_DIR)/part-m-00000 $(WORDCOUNT_DIR)$$i 2>&1 | tee -a $@; done;
