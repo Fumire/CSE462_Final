@@ -7,7 +7,7 @@
     </property>
     <property>
         <name>dfs.blocksize</name>
-        <value>10485760</value>
+        <value>104857600</value>
     </property>
     <property>
         <name>dfs.client.use.datanode.hostname</name>
