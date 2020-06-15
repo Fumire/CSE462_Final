@@ -15,6 +15,7 @@ RESOURCEMANAGER_OPTION = -jt elec-com-eng-p28:8032
 
 # RECIPES 
 all:
+	ssh root@114.70.14.161 -p 32222 -v -N -L 9870:114.70.14.161:9870
 
 makeinput: randomtextwriter.xml
 	yarn jar $(JAR_FILE) randomtextwriter -conf $(word 1,$^) $(RESOURCEMANAGER_OPTION) $(INPUT_DIR) 2>&1 | tee $@

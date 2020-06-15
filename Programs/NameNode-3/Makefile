@@ -6,7 +6,6 @@ VOLUME_OPTS = --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath
 HOST_OPTS = --add-host elec-com-eng-p28:114.70.14.161 --add-host elec-com-eng-p29:114.70.14.162 --add-host elec-com-eng-p30:114.70.14.163
 
 all:
-	ssh root@114.70.14.161 -p 32222 -v -N -L 9870:114.70.14.161:9870
 
 build: Dockerfile
 	docker build --tag $(IMAGE_NAME) .
