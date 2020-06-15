@@ -12,8 +12,7 @@ RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/
 RUN rm /tmp/hadoop.tar.gz
 
 RUN sed -i "s/ENABLED=\"false\"/ENABLED=\"true\"/g" /etc/default/sysstat
-# RUN echo "* * * * * root /usr/lib/sysstat/debian-sa1 > /dev/null && /usr/lib/sysstat/debian-sa1 1 1" >> /etc/cron.d/sysstat
-RUN echo "* * * * * root for i in `seq 1 59`; do /usr/lib/sysstat/debian-sa1 1 1; done" >> /etc/cron.d/sysstat
+RUN echo "* * * * * root /usr/lib/sysstat/debian-sa1 1 59" >> /etc/cron.d/sysstat
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION /opt/hadoop
 RUN mkdir /opt/hadoop-$HADOOP_VERSION/dfs
