@@ -45,4 +45,8 @@
         <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
         <value>false</value>
     </property>
+    <property>
+        <name>dfs.namenode.heartbeat.recheck-interval</name>
+        <value>300000</value>
+    </property>
 </configuration>
