@@ -4,8 +4,8 @@ CONTAINER_NAME = NameNode
 PORT_OPTS = --publish 8030:8030 --publish 8031:8031 --publish 8032:8032 --publish 8033:8033 --publish 8088:8088 --publish 9000:9000 --publish 9870:9870 --publish 19888:19888# --network host
 VOLUME_OPTS = --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath ../Scripts):/Scripts:z
 HOST_OPTS = --add-host elec-com-eng-p28:114.70.14.161 --add-host elec-com-eng-p29:114.70.14.162 --add-host elec-com-eng-p30:114.70.14.163
-CPU_OPTS = --cpus="1"
-MEM_OPTS = --memory="2g"
+CPU_OPTS = --cpus="3"
+MEM_OPTS = --memory="6g"
 OPTS = $(PORT_OPTS) $(VOLUME_OPTS) $(HOST_OPTS) $(CPU_OPTS) $(MEM_OPTS)
 
 all:
