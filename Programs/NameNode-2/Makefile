@@ -1,7 +1,7 @@
 IMAGE_NAME = namenode:2.9.2
 CONTAINER_NAME = NameNode
 
-PORT_OPTS = --publish 8030:8030 --publish 8031:8031 --publish 8032:8032 --publish 8033:8033 --publish 8088:8088 --publish 9000:9000 --publish 9870:9870 --publish 19888:19888# --network host
+PORT_OPTS = --publish 9000:9000 --publish 19888:19888 --publish 10033:10033 --publish 50070:50070 --publish 8088:8088 --publish 8030:8030 --publish 8031:8031 --publish 8032:8032 --publish 8033:8033 --publish 10020:10020
 VOLUME_OPTS = --volume $(abspath name):/opt/hadoop/dfs/name:z --volume $(abspath ../Scripts):/Scripts:z
 HOST_OPTS = --add-host elec-com-eng-p28:114.70.14.161 --add-host elec-com-eng-p29:114.70.14.162 --add-host elec-com-eng-p30:114.70.14.163
 CPU_OPTS = --cpus="3"
